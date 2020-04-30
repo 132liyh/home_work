@@ -1,0 +1,219 @@
+.index{
+    &-banner{
+        height: turn(300);
+        background: $color-eee;
+        .banner-img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    &-nav{
+        padding: 0 $size-32;
+        margin-top: $size-32;
+        @include space();
+        &-box{
+            @include space();
+            flex-direction: column;
+            .nav-img{
+                width: turn(100);
+                height: turn(100);
+                border: turn(1) solid $color-eee;
+                box-sizing: border-box;
+                border-radius: 50%;
+                margin-bottom: turn(10);
+            }
+            .nav-name{
+                font-size: $size-28;
+            }
+        }
+    }
+    &-recommend{
+        @include content-wid();
+        @include space(flex-start,flex-start);
+        margin-top: $size-32;
+        padding: $size-32;
+        box-sizing: border-box;
+        background: $color-zhu;
+        border-radius: turn(8);
+        &-logo{
+            width: turn(80);
+            height: turn(80);
+            border: turn(2) solid $color-fff;
+            border-radius: 50%;
+            flex-shrink: 0;
+            @include space();
+        }
+        &-content{
+            flex: 1;
+            display: flex;
+            @include over();
+            box-sizing: border-box;
+            flex-direction: column;
+            margin-left: turn(25);
+            font-size: $size-32;
+            color: $color-fff;
+            .recommend-title{
+                @include space();
+                margin-bottom: turn(15);
+                .title{
+                    width: 70%;
+                    @include over();
+                }
+                .phone-num{
+                    font-size: $size-28;
+                    white-space: nowrap;
+                }
+            }
+            .recommend-address{
+                margin-bottom: turn(20);
+                @include over();
+            }
+            .recommend-action{
+                display: flex;
+                button{
+                    font-weight: normal;
+                    font-size: $size-24;
+                    border: turn(1) solid $color-fff;
+                    padding: 0 turn(20);
+                    color: $color-fff;
+                    margin-left: 0;
+                    border-radius: turn(40);
+                    margin-right: turn(30);
+                    background: none;
+                }
+            }
+        }
+    }
+    &-theme{
+        @include space();
+        padding: 0 $size-32;
+        margin-top: $size-28;
+        &-left{
+            width: calc(50% - 4px);
+            height: turn(400);
+            position: relative;
+            .theme-left{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: turn(8);
+                background: $color-eee;
+                opacity: 0;
+                transition: 1.5s opacity;
+                &.active{
+                    opacity: 1;
+                }
+            }
+        }
+        &-two{
+            width: calc(50% - 4px);
+            height: turn(400);
+            @include space();
+            flex-direction: column;
+            .theme-right{
+                height: calc(50% - 4px);
+                width: 100%;
+                border-radius: turn(8);
+                background: $color-eee;
+            }
+        }
+    }
+    &-team{
+        padding: 0 $size-32;
+        margin-top: $size-32;
+        &-title{
+            @extend .index-activity-title
+        }
+        &-content{
+            margin-top: turn(44);
+            .content-title{
+                white-space: nowrap;
+                button{
+                    margin: 0 turn(30) 0 0;
+                    padding: turn(5) turn(20);
+                    font-weight: normal;
+                    font-size: $size-28;
+                    background: $color-eee;
+                    color: $color-999;
+                    white-space: nowrap;
+                    transition: 0.2s background,color;
+                    &:last-of-type{
+                        margin-right: 0;
+                    }
+                    &.active{
+                        background: $color-zhu;
+                        color: $color-fff;
+                    }
+                }
+            }
+            .content-data{
+                margin-top: turn(10);
+                white-space: nowrap;
+                .design-info{
+                    display: inline-flex;
+                    flex-direction: column;
+                    font-size: $size-28;
+                    justify-content: center;
+                    margin-right: turn(30);
+                    align-items: center;
+                    &:last-of-type{
+                        margin-right: 0;
+                    }
+                    .design-head{
+                        width: turn(100);
+                        height: turn(100);
+                        border-radius: 50%;
+                        margin-bottom: turn(10);
+                        background: $color-eee;
+                    }
+                }
+            }
+        }
+    }
+    &-activity{
+        padding: 0 $size-32;
+        background: $color-fff;
+        margin-top: $size-32;
+        margin-bottom: turn(30);
+        &-title{
+            @include space();
+            @include add-line("&",turn(-15));
+            font-size: $size-32;
+            .more{
+                font-size: $size-24;
+                color: $color-999;
+            }
+        }
+        &-list{
+            @include space(flex-start);
+            margin-top: turn(44);
+            .activity-img{
+                width: turn(150);
+                height: turn(150);
+                background: $color-eee;
+                flex-shrink: 0;
+                margin-right: turn(15);
+            }
+            .activity-info{
+                @include space(space-around,flex-start);
+                @include over();
+                height: turn(150);
+                flex: 1;
+                flex-direction: column;
+                font-size: $size-32;
+                .info-title{
+                    width: 100%;
+                    @include over();
+                }
+                .describe{
+                    width: 100%;
+                    font-size: $size-24;
+                    color: $color-999;
+                    @include over();
+                }
+            }
+        }
+    }
+}

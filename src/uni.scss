@@ -1,0 +1,48 @@
+@function turn($num) {
+    @return $num+rpx;
+}
+
+@mixin space($space:space-between,$center:center){
+    display: flex;
+    justify-content: $space;
+    align-items: $center;
+}
+
+@mixin content-wid(){
+    width: turn(686);
+    margin: 0 auto;
+}
+
+@mixin over(){
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+@mixin add-line($el,$bottom:0) {
+    #{$el}{
+        position: relative;
+    }
+    #{$el}:after{
+        content: '';
+        position: absolute;
+        width: 100%;
+        border-bottom: turn(1) solid $color-eee;
+        transform: scale(1,0.5);
+        bottom: $bottom;
+        left: 0;
+    }
+}
+
+$color-eee:#eee;
+$color-fff:#fff;
+$color-333:#333;
+$color-666:#666;
+$color-999:#999;
+$color-zhu:#ffaa55;
+
+$size-32:turn(32);
+$size-28:turn(28);
+$size-24:turn(24);
+
+
