@@ -7,7 +7,8 @@
         </swiper>
         <view class="index-nav">
             <view class="index-nav-box" v-for="(item,key) in navData" :key="key">
-                <image class="nav-img" :src="item.icon"/>
+                <image class="nav-img" v-if="item.icon" :src="item.icon" />
+                <text class="nav-img" v-else>更多</text>
                 <text class="nav-name">{{item.name}}</text>
             </view>
         </view>
@@ -87,20 +88,23 @@
                 ],
                 navData: [
                     {
-                        icon: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=4023046766,851173824&fm=26&gp=0.jpg',
-                        name: '设计师'
+                        icon: 'https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1465742361,760874765&fm=26&gp=0.jpg',
+                        name: '现代简约'
                     },
                     {
-                        icon: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=4023046766,851173824&fm=26&gp=0.jpg',
-                        name: '设计师'
+                        icon: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1108971238,997080325&fm=26&gp=0.jpg',
+                        name: '北欧风格'
                     },
                     {
-                        icon: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=4023046766,851173824&fm=26&gp=0.jpg',
-                        name: '设计师'
+                        icon: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2003988058,662964380&fm=26&gp=0.jpg',
+                        name: '中式风格'
                     },
                     {
-                        icon: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=4023046766,851173824&fm=26&gp=0.jpg',
-                        name: '设计师'
+                        icon: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3904825583,3221420373&fm=26&gp=0.jpg',
+                        name: '全新风格'
+                    },{
+                        icon:'',
+                        name:'更多风格'
                     }
                 ],
                 headImg: icon,

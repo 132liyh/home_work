@@ -1,0 +1,57 @@
+.user{
+    height: 100%;
+    min-height: 100vh;
+    background: $color-eee;
+    &-info{
+        padding: $size-32;
+        background: $color-zhu;
+        @include space(flex-start);
+        font-size: $size-32;
+        color: $color-fff;
+        .user-head{
+            width: turn(100);
+            height: turn(100);
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: turn(24);
+            border: turn(5) solid $color-fff;
+            background: $color-eee;
+        }
+    }
+    &-list{
+        @include content-wid();
+        margin: $size-32 auto;
+        background: $color-fff;
+        border-radius: turn(16);
+        box-sizing: border-box;
+        .list-click{
+            background: $color-eee;
+            opacity: .8;
+        }
+        &-box{
+            @include space(flex-start);
+            padding: $size-32;
+            color: $color-333;
+            font-size: $size-32;
+            &:not(:last-of-type){
+                @include add-line('&');
+                &:after{
+                    left: turn(75);
+                }
+            }
+            .list-icon{
+                width: turn(50);
+                height: turn(50);
+                border-radius: turn(10);
+                margin-right: turn(25);
+            }
+            .list-right{
+                flex: 1;
+                @include space();
+                .right-icon{
+                    color: $color-999;
+                }
+            }
+        }
+    }
+}
