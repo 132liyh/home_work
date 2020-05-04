@@ -21,8 +21,8 @@
                 </view>
                 <text class="recommend-address">江西省吉安市</text>
                 <view class="recommend-action">
-                    <button size="mini">立即预约</button>
-                    <button size="mini">电话咨询</button>
+                    <button size="mini" @click="subscribe">立即预约</button>
+                    <button size="mini" @click="callPhone">电话咨询</button>
                 </view>
             </view>
         </view>
@@ -74,6 +74,7 @@
 
 <script>
     import {uniSegmentedControl} from '@dcloudio/uni-ui'
+import { api, viewName } from '../../utils/util';
     const icon = `http://img0.imgtn.bdimg.com/it/u=2841648446,236398816&fm=26&gp=0.jpg`;
     export default {
         components: {
@@ -156,6 +157,14 @@
             },
             designClick(){
             
+            },
+            subscribe(){
+                api.jump(viewName.subscribe);
+            },
+            callPhone(){
+                uni.makePhoneCall({
+                    phoneNumber:'13800138000'
+                })
             }
         }
     }

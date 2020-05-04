@@ -1,0 +1,20 @@
+.collection-info{
+    &-title{
+        font-size: $size-32;
+        color: $color-333;
+        padding: $size-32;
+    }
+    &-tips{
+        display: flex;
+        padding: $size-32;
+        padding-top: 0;
+        flex-direction: column;
+        font-size: $size-28;
+        color: $color-999;
+        .tips-box{
+            text-indent: $size-64;
+            margin-bottom: turn(10);
+            line-height: turn(40);
+        }
+    }
+}

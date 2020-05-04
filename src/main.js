@@ -5,6 +5,9 @@ Vue.config.productionTip = false
 
 App.mpType = 'app'
 
+import {uniLoadMore} from '@dcloudio/uni-ui';
+Vue.component("uniLoadMore",uniLoadMore);
+
 const app = new Vue({
   ...App
 })

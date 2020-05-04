@@ -1,0 +1,38 @@
+.collection{
+    .list-click{
+        background: $color-eee;
+        opacity: .8;
+    }
+    &-list{
+        padding: $size-32;
+        background: $color-fff;
+        @include space(flex-start);
+        @include add-line('&');
+        .list-icon{
+            width: turn(150);
+            height: turn(150);
+            border-radius: turn(8);
+            flex-shrink: 0;
+            margin-right: turn(20);
+        }
+        .list-content{
+            flex: 1;
+            display: flex;
+            height: turn(150);
+            flex-direction: column;
+            justify-content: space-around;
+            @include over();
+            .list-title{
+                width: 100%;
+                @include over();
+                font-size: $size-32;
+                color: $color-333;
+            }
+            .list-tips{
+                @extend .list-title;
+                font-size: $size-28;
+                color: $color-999;
+            }
+        }
+    }
+}

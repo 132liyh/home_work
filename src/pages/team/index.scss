@@ -1,0 +1,25 @@
+.team{
+    .list-click{
+        background: $color-eee;
+        opacity: .8;
+    }
+    &-list{
+        @include space();
+        padding: $size-32;
+        box-sizing: border-box;
+        @include add-line("&");
+        color: $color-333;
+        font-size: $size-32;
+        .team-logo{
+            width: turn(100);
+            height: turn(100);
+            border-radius: 50%;;
+            border: turn(5) solid $color-zhu;
+            margin-right: turn(15);
+        }
+        .team-box{
+            flex: 1;
+            @include space();
+        }
+    }
+}

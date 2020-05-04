@@ -1,0 +1,119 @@
+.subscribe{
+    box-sizing: border-box;
+    &-title{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        .big{
+            font-size: $size-64;
+        }
+        .small{
+            font-size: $size-32;
+            color: $color-666;
+        }
+    }
+    &-list{
+        padding: $size-32;
+        @include space();
+        flex-wrap: wrap;
+        margin-bottom: turn(100);
+        .list-box{
+            width: 48%;
+            position: relative;
+            margin-top: turn(30);
+            overflow: hidden;
+            .list-icon{
+                width: 100%;
+            }
+            .list{
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                z-index: 1;
+                background-color: rgba(0,0,0,0.5);
+                color: $color-fff;
+                padding: $size-28;
+                font-size: $size-28;
+                display: flex;
+                flex-direction: column;
+                transition: 0.5s bottom;
+                &.hide{
+                    bottom: -100%;
+                }
+            }
+        }
+    }
+    &-content{
+        padding: $size-32;
+        background-image: url('http://s.dyrs.cc/static/pc/images/zyA6-site.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        &-tips{
+            @include space(flex-end);
+            font-size: $size-32;
+            color: $color-333;
+            margin-top: turn(50);
+        }
+        &-site{
+            padding: $size-32;
+            @include space();
+            flex-wrap: wrap;
+            .site-box{
+                width: 48%;
+                margin-bottom: turn(40);
+                background: $color-fff;
+                padding: $size-28;
+                box-sizing: border-box;
+                border-radius: turn(8);
+                font-size: $size-28;
+                .title{
+                    font-size: $size-32;
+                    font-weight: bold;
+                }
+                .num{
+                    margin: turn(20) auto;
+                    font-size: $size-64;
+                }
+                .address{
+                    width: 100%;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2;
+                    overflow: hidden;
+                }
+            }
+        }
+    }
+    &-spet{
+        padding: $size-32;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        .spet-box{
+            width: turn(150);
+            height: turn(150);
+            border-radius: 50%;
+            border: turn(5) solid $color-zhu;
+            @include space(center);
+            font-size: $size-28;
+            text-align: center;
+            padding: turn(10);
+            box-sizing: border-box;
+            position: relative;
+            .bg{
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: -1;
+                font-size: turn(80);
+                color: $color-eee;
+            }
+        }
+    }
+}
