@@ -1,60 +1,84 @@
 {
-	"pages": [
-		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "满天星装潢"
-			}
-		},{
-			"path":"pages/subscribe/index",
-			"style":{
-				"navigationBarTitleText":"团队简介"
-			}
-		},{
-			"path":"pages/user/index",
-			"style":{
-				"navigationBarTitleText":"个人中心"
-			}
-		},{
-			"path":"pages/collection/index",
-			"style":{
-				"navigationBarTitleText":"我的收藏"
-			}
-		},{
-			"path":"pages/team/index",
-			"style":{
-				"navigationBarTitleText":"关注的团队"
-			}
-		},{
-			"path":"pages/collection-info/index",
-			"style":{
-				"navigationBarTitleText":"经典案例"
-			}
-		}
-	],
-	"tabBar":{
-		"color":"#333333",
-		"selectedColor":"#ffaa55",
-		"backgroundColor":"#ffffff",
-		"borderStyle":"white",
-		"list":[
-			{
-				"pagePath":"pages/index/index",
-				"text":"首页",
-				"iconPath":"/static/tabbar/index.png",
-				"selectedIconPath":"/static/tabbar/index-active.png"
-			},{
-				"pagePath":"pages/user/index",
-				"text":"我的",
-				"iconPath":"/static/tabbar/user.png",
-				"selectedIconPath":"/static/tabbar/user-active.png"
-			}
-		]
-	},
-	"globalStyle": {
-		"navigationBarTextStyle": "white",
-		"navigationBarTitleText": "满天星装潢",
-		"navigationBarBackgroundColor": "#ffaa55",
-		"backgroundColor": "#F8F8F8"
-	}
+      "pages": [
+            {
+                  "path": "pages/index/index",
+                  "style": {
+                        "navigationBarTitleText": "满天星装潢"
+                  }
+            },
+            {
+                  "path": "pages/case/index",
+                  "style": {
+                        "navigationBarTitleText": "经典案例"
+                  }
+            },
+            {
+                  "path": "pages/user/index",
+                  "style": {
+                        "navigationBarTitleText": "个人中心"
+                  }
+            },
+            {
+                  "path": "pages/login/index",
+                  "style": {
+                        "navigationBarTitleText": "用户登录"
+                  }
+            },
+            {
+                  "path": "pages/subscribe/index",
+                  "style": {
+                        "navigationBarTitleText": "团队简介"
+                  }
+            },
+            {
+                  "path": "pages/collection/index",
+                  "style": {
+                        "navigationBarTitleText": "我的收藏"
+                  }
+            },
+            {
+                  "path": "pages/team/index",
+                  "style": {
+                        "navigationBarTitleText": "关注的团队"
+                  }
+            },
+            {
+                  "path": "pages/collection-info/index",
+                  "style": {
+                        "navigationBarTitleText": "经典案例"
+                  }
+            }
+      ],
+      "tabBar": {
+            "color": "#333333",
+            "selectedColor": "#ffaa55",
+            "backgroundColor": "#ffffff",
+            "borderStyle": "white",
+            "list": [
+                  {
+                        "pagePath": "pages/index/index",
+                        "text": "首页",
+                        "iconPath": "/static/tabbar/index.png",
+                        "selectedIconPath": "/static/tabbar/index-active.png"
+                  },
+                  {
+                        "pagePath": "pages/case/index",
+                        "text": "案例",
+                        "iconPath": "/static/tabbar/case.png",
+                        "selectedIconPath": "/static/tabbar/case-active.png"
+                  },
+                  {
+                        "pagePath": "pages/user/index",
+                        "text": "我的",
+                        "iconPath": "/static/tabbar/user.png",
+                        "selectedIconPath": "/static/tabbar/user-active.png"
+                  }
+            ]
+      },
+      "globalStyle": {
+            "navigationBarTextStyle": "white",
+            "navigationBarTitleText": "满天星装潢",
+            "navigationBarBackgroundColor": "#ffaa55",
+            "backgroundColor": "#F8F8F8"
+      }
 }

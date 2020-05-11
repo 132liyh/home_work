@@ -33,7 +33,7 @@
                 </block>
             </view>
             <view class="index-theme-two">
-                <image class="theme-right"/>
+                <image class="theme-right" src="https://iph.href.lu/282x162?text=%E4%B8%8D%E6%98%BE%E7%A4%BA%E6%95%B0%E6%8D%AE%E5%B0%B1%E7%82%B9%E6%88%91" @click="openDeBug"/>
                 <image class="theme-right"/>
             </view>
         </view>
@@ -148,6 +148,9 @@ import { api, viewName } from '../../utils/util';
                 this.active = this.active === 0 ? 1 : 0;
             }, 4000)
         },
+        onLoad(){
+
+        },
         onHide(){
             clearInterval(this.myTime);
         },
@@ -165,6 +168,11 @@ import { api, viewName } from '../../utils/util';
                 uni.makePhoneCall({
                     phoneNumber:'13800138000'
                 })
+            },
+            openDeBug(){
+                  uni.setEnableDebug({
+                        enableDebug: true
+                  })
             }
         }
     }

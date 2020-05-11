@@ -1,5 +1,6 @@
 <template>
   <view class="collection-info">
+      <uni-icons class="collection-info-filled" @click="fabulous" type="heart-filled" :color="collectionData.filled==1?'#ffaa55':'#999'" size="20" />
       <swiper class="swiper" indicator-dots v-if="collectionData.banner.length">
           <swiper-item v-for="(item,key) in collectionData.banner" :key="key">
               <image :src="item" />
@@ -9,30 +10,38 @@
             <text>{{collectionData.title}}</text>
         </view>
         <view class="collection-info-tips">
-            <view class="tips-box" v-for="(item,key) in collectionData.content" :key="key">
-                <text>
-                    {{item}}
-                </text>
-            </view>
+            <text class="tips-box" v-for="(item,key) in collectionData.content" :key="key">
+                  {{item}}
+            </text>
         </view>
   </view>
 </template>
 
 <script>
 import {api} from '../../utils/util';
-import collection from '../collection/collection.json'
+import collection from '../collection/collection.json';
+import { uniIcons } from '@dcloudio/uni-ui';
+import { FindChartItem } from '../../utils/api';
 export default {
+      components: {
+            uniIcons,
+      },
     data() {
         return {
             collectionData: {
                 banner:[],
                 content:[],
-                title:''
+                title:'',
+                filled:1
             }
         }
     },
     onLoad(){
         const {id} = api.getData();
+
+        FindChartItem({id}).then(()=>{
+
+        })
         this.collectionData = collection.find((item)=>{
             return item.id==id;
         })
@@ -45,6 +54,16 @@ export default {
             title: this.collectionData.title || '经典案例'
         });
         
+    },
+    methods:{
+          fabulous(){                
+                this.$set(this.collectionData,'filled',this.collectionData.filled==1?0:1);
+                uni.showNavigationBarLoading();
+                const time = setTimeout(() => {
+                      uni.hideNavigationBarLoading();
+                      clearTimeout(time);
+                }, 500);                
+          }
     }
 }
 </script>

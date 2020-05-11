@@ -1,0 +1,38 @@
+.case-list {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 0 $size-32;
+
+      &-content {
+            width: 48%;
+            display: flex;
+            flex-direction: column;
+            margin-top: $size-32;
+            margin-bottom: $size-32;
+
+            .list-content {
+                  width: 100%;
+
+                  .list-img {
+                        width: 100%;
+                  }
+
+                  .list-name {
+                        font-size: turn(28);
+                        color: $color-333;
+                        overflow: hidden;
+                        padding: turn(5);
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                        box-sizing: border-box;
+                  }
+            }
+      }
+      .loading{
+            width: 100%;
+            @include space(center);
+      }
+}

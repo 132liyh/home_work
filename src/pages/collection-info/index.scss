@@ -1,20 +1,31 @@
-.collection-info{
-    &-title{
-        font-size: $size-32;
-        color: $color-333;
-        padding: $size-32;
-    }
-    &-tips{
-        display: flex;
-        padding: $size-32;
-        padding-top: 0;
-        flex-direction: column;
-        font-size: $size-28;
-        color: $color-999;
-        .tips-box{
-            text-indent: $size-64;
-            margin-bottom: turn(10);
-            line-height: turn(40);
-        }
-    }
+.collection-info {
+      position: relative;
+
+      &-filled {
+            position: absolute;
+            top: turn(20);
+            right: turn(20);
+            z-index: 10;
+      }
+
+      &-title {
+            font-size: $size-32;
+            color: $color-333;
+            padding: $size-32;
+      }
+
+      &-tips {
+            display: flex;
+            padding: $size-32;
+            padding-top: 0;
+            flex-direction: column;
+            font-size: $size-28;
+            color: $color-999;
+
+            .tips-box {
+                  text-indent: $size-64;
+                  margin-bottom: turn(10);
+                  line-height: turn(40);
+            }
+      }
 }
