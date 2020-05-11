@@ -36,11 +36,12 @@ export {
  * 请求接口
  * @param {String} url 请求地址
  * @param {Object} postData 请求参数
+ * @param {string} type 请求类型 默认post
  */
-export const request = async (url, postData = {}) => {
+export const request = async (url, postData = {},type="POSt") => {
       const [error, { data }] = await uni.request({
             url: url.includes('http') ? url : `${baseUrl}${url}`,
-            method: 'POST',
+            method: type,
             data: postData,
       });
       return data;

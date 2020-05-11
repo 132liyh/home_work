@@ -3,47 +3,95 @@
         <view class="case-input">
             <text class="input-title">标题</text>
             <view class="input-box">
-                <input type="text" v-model="caseTitle" placeholder="请输入标题" />
+                <input type="text" v-model="caseTitle" placeholder="请输入标题"/>
             </view>
         </view>
         <view class="case-input">
-            <text class="input-title">主图</text>
-            <image class="add-img" @click="selImg('logo')" src="/static/images/add.png" />
+            <text class="input-title">地区</text>
+            <view class="input-box">
+                <input type="text" v-model="caseAddress" placeholder="请输入地区"/>
+            </view>
         </view>
         <view class="case-input">
-            <text class="input-title">详情主图</text>
+            <view>
+                <text class="input-title">主图</text>
+                <text class="tips">(长按删除)</text>
+            </view>
             <view class="list-img">
-                <image class="add-img" v-for="(item,key) in detailImg" :key="key" :src="item" />
-                <image class="add-img" @click="selImg('detail')"  src="/static/images/add.png" />
+                <image class="add-img" v-if="logoImg" @longpress="longPress('logo')" @click="selImg('logo')" :src="logoImg" mode="aspectFill" />
+                <image class="add-img" v-if="!logoImg" @click="selImg('logo')" src="/static/images/add.png"/>
+            </view>
+        </view>
+        <view class="case-input">
+            <view>
+                <text class="input-title">详情主图</text>
+                <text class="tips">(长按删除)</text>
+            </view>
+            <view class="list-img">
+                <image class="add-img" v-for="(item,key) in detailImg" @longpress="longPress('detail',key)" :key="key"
+                       :src="item" mode="aspectFill"/>
+                <image v-if="detailImg.length<=1" class="add-img" @click="selImg('detail')" src="/static/images/add.png"/>
             </view>
         </view>
         <view class="case-input">
             <text class="input-title">详情内容</text>
-            <textarea auto-height class="input-content" v-model="caseContent" placeholder="请输入内容" />
+            <textarea auto-height class="input-content" v-model="caseContent" placeholder="请输入内容"/>
         </view>
         <view class="case-save">
-            <button type="primary" :loading="loading">保存</button>
+            <button type="primary" :loading="loading" @click="save">保存</button>
         </view>
     </view>
 </template>
 
 <script>
+    import {AddCase} from "../../utils/api";
+
     export default {
         data() {
             return {
                 caseTitle: '',
-                caseContent:'',
-                detailImg:[],
+                caseAddress:'',
+                caseContent: '',
+                logoImg: '',
+                detailImg: [],
 
-                loading:false
+                loading: false
             }
         },
-        methods:{
-            selImg(){
+        methods: {
+            selImg(type) {
                 uni.chooseImage({
-                    success({tempFilePaths}){
-                        console.log(tempFilePaths)
+                    count: (type === 'logo') ? 1 : (5 - this.detailImg.length),
+                    success:({tempFilePaths})=> {
+                        if(type === 'logo'){
+                            this.logoImg = tempFilePaths[0];
+                        }
+                        else {
+                            this.detailImg = [...this.detailImg,...tempFilePaths];
+                        }
                     }
+                })
+            },
+            longPress(type,key) {
+                if(type === 'logo'){
+                    this.logoImg = '';
+                }
+                else {
+                    this.detailImg.splice(key,1);
+                }
+            },
+            save(){
+                AddCase({
+                    name:"首次发送案例",
+                    caseImagePath:"http://b-ssl.duitang.com/uploads/item/201901/09/20190109072726_aNNZd.thumb.700_0.jpeg",
+                    content:"测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试",
+                    district:"11",
+                    fitStage:"11",
+                    createId:2,
+                    imagePaths:[
+                        "http://b-ssl.duitang.com/uploads/item/201901/09/20190109072726_aNNZd.thumb.700_0.jpeg",
+                        "http://b-ssl.duitang.com/uploads/item/201901/09/20190109072726_aNNZd.thumb.700_0.jpeg"
+                    ]
                 })
             }
         }
@@ -51,5 +99,5 @@
 </script>
 
 <style scoped lang="scss">
-@import "./index.scss";
+    @import "./index.scss";
 </style>

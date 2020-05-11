@@ -35,3 +35,9 @@ export const UserLogin=(postData)=>{
 export const UserTest=(postData)=>{
       return request('user/loginUser',postData)
 }
+
+
+
+export const AddCase=(postData)=>{
+    return request('case/addCase',postData)
+}
