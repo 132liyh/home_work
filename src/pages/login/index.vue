@@ -6,7 +6,7 @@
             </text>
             <view class="login-btn">
                  <button size="mini" @click="backView">暂不授权</button>
-                 <button size="mini" open-type="getUserInfo" @getuserinfo="getuserinfo" type="primary">立即授权</button>
+                 <button size="mini" open-type="getUserInfo" @getuserinfo="getUserInfo" type="primary">立即授权</button>
             </view>
       </view>
 </template>
@@ -23,7 +23,7 @@ export default {
             backView() {
                   uni.navigateBack();
             },
-            getuserinfo({detail}){
+            getUserInfo({detail}){
                   if(!detail.userInfo){
                         api.toast('请同意授权');
                         return false;
@@ -31,9 +31,13 @@ export default {
                   
                   uni.login({
                         success({code}){
-                              UserTest(code).then((res)=>{
+                            const {nickName,avatarUrl} = detail.userInfo;
+                              UserTest({
+                                  wxCode:code,
+                                  userName:nickName,
+                                  wxImagePath:avatarUrl,
+                              }).then((res)=>{
                                     console.log(res);
-                                    
                               })
                         }
                   })

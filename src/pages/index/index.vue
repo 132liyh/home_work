@@ -7,7 +7,7 @@
         </swiper>
         <view class="index-nav">
             <view class="index-nav-box" v-for="(item,key) in navData" :key="key">
-                <image class="nav-img" v-if="item.icon" :src="item.icon" />
+                <image class="nav-img" v-if="item.icon" :src="item.icon"/>
                 <text class="nav-img" v-else>更多</text>
                 <text class="nav-name">{{item.name}}</text>
             </view>
@@ -33,7 +33,9 @@
                 </block>
             </view>
             <view class="index-theme-two">
-                <image class="theme-right" src="https://iph.href.lu/282x162?text=%E4%B8%8D%E6%98%BE%E7%A4%BA%E6%95%B0%E6%8D%AE%E5%B0%B1%E7%82%B9%E6%88%91" @click="openDeBug"/>
+                <image class="theme-right"
+                       src="https://iph.href.lu/282x162?text=%E4%B8%8D%E6%98%BE%E7%A4%BA%E6%95%B0%E6%8D%AE%E5%B0%B1%E7%82%B9%E6%88%91"
+                       @click="openDeBug"/>
                 <image class="theme-right"/>
             </view>
         </view>
@@ -44,13 +46,14 @@
             </view>
             <view class="index-team-content">
                 <scroll-view scroll-x enable-flex class="content-title">
-                    <button size="mini" v-for="(item,key) in teamArr" :key="key" :class="{active:key===activeNum}" @click="teamClick(key)">
+                    <button size="mini" v-for="(item,key) in teamArr" :key="key" :class="{active:key===activeNum}"
+                            @click="teamClick(key)">
                         {{item.name}}
                     </button>
                 </scroll-view>
                 <scroll-view scroll-x enable-flex class="content-data">
                     <view class="design-info" v-for="(item,key) in teamData" :key="key" @click="designClick(item)">
-                        <image class="design-head" :src="item.icon" />
+                        <image class="design-head" :src="item.icon"/>
                         <text class="design-name">{{item.name}}</text>
                     </view>
                 </scroll-view>
@@ -74,8 +77,10 @@
 
 <script>
     import {uniSegmentedControl} from '@dcloudio/uni-ui'
-import { api, viewName } from '../../utils/util';
+    import {api, viewName} from '../../utils/util';
+
     const icon = `http://img0.imgtn.bdimg.com/it/u=2841648446,236398816&fm=26&gp=0.jpg`;
+
     export default {
         components: {
             uniSegmentedControl
@@ -103,9 +108,9 @@ import { api, viewName } from '../../utils/util';
                     {
                         icon: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3904825583,3221420373&fm=26&gp=0.jpg',
                         name: '全新风格'
-                    },{
-                        icon:'',
-                        name:'更多风格'
+                    }, {
+                        icon: '',
+                        name: '更多风格'
                     }
                 ],
                 headImg: icon,
@@ -114,31 +119,31 @@ import { api, viewName } from '../../utils/util';
                     'http://img4.imgtn.bdimg.com/it/u=1099941306,360276874&fm=26&gp=0.jpg'
                 ],
                 active: 0,   //
-                teamArr:[{
-                    name:'设计团队',
-                    id:1
-                },{
-                    name:'施工团队',
-                    id:1
-                },{
-                    name:'团队负责人',
-                    id:1
-                },{
-                    name:'区域负责人',
-                    id:1
+                teamArr: [{
+                    name: '设计团队',
+                    id: 1
+                }, {
+                    name: '施工团队',
+                    id: 1
+                }, {
+                    name: '团队负责人',
+                    id: 1
+                }, {
+                    name: '区域负责人',
+                    id: 1
                 }],
-                activeNum:0,  //选择的
-                teamData:[
+                activeNum: 0,  //选择的
+                teamData: [
                     {
-                        name:'王某某',
-                        icon:icon
+                        name: '王某某',
+                        icon: icon
                     },
                     {
-                        name:'王某某',
-                        icon:icon
+                        name: '王某某',
+                        icon: icon
                     }
                 ],
-                
+
 
                 myTime: null,
             }
@@ -148,31 +153,31 @@ import { api, viewName } from '../../utils/util';
                 this.active = this.active === 0 ? 1 : 0;
             }, 4000)
         },
-        onLoad(){
-
+        onLoad() {
+        
         },
-        onHide(){
+        onHide() {
             clearInterval(this.myTime);
         },
         methods: {
-            teamClick(key){
+            teamClick(key) {
                 this.activeNum = key;
             },
-            designClick(){
-            
+            designClick() {
+
             },
-            subscribe(){
+            subscribe() {
                 api.jump(viewName.subscribe);
             },
-            callPhone(){
+            callPhone() {
                 uni.makePhoneCall({
-                    phoneNumber:'13800138000'
+                    phoneNumber: '13800138000'
                 })
             },
-            openDeBug(){
-                  uni.setEnableDebug({
-                        enableDebug: true
-                  })
+            openDeBug() {
+                uni.setEnableDebug({
+                    enableDebug: true
+                })
             }
         }
     }

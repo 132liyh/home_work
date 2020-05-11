@@ -33,5 +33,5 @@ export const UserLogin=(postData)=>{
  * @param {object} postData 
  */
 export const UserTest=(postData)=>{
-      return request('user/demo',postData)
+      return request('user/loginUser',postData)
 }
