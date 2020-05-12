@@ -1,13 +1,14 @@
 <template>
     <view class="user">
-        <view class="user-info">
+        <view class="user-info" @click="handleAdministratorLogin" >
             <view class="user-head">
                 <open-data type="userAvatarUrl" />
             </view>
             <view class="user-nikename">
                 <open-data type="userNickName" />
             </view>
-        </view>
+            <text class="right-icon">{{rightIcon}}</text>
+        </view> 
         <view class="user-list">
             <view v-for="(item,key) in myList" :key="key" 
                 class="user-list-box"
@@ -46,7 +47,8 @@ export default {
                     name:'联系客服',
                     icon:'/static/images/customer.png',
                 }
-            ]
+            ],
+            adminLLogin: viewName.userLogin,
         }
     },
     methods:{
@@ -54,6 +56,17 @@ export default {
             if(!link)
                 return false;
             api.jump(link);
+        },
+        handleAdministratorLogin(){
+            uni.navigateTo({
+                url: this.adminLLogin,
+                success: (res) => {
+                    console.log(res);
+                },
+                fail: (err) => {
+                    console.log(err);
+                }
+            })
         }
     }
 }

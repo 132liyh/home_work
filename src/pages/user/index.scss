@@ -17,6 +17,12 @@
             border: turn(5) solid $color-fff;
             background: $color-eee;
         }
+        .right-icon{
+            display: block;
+            position: absolute;
+            right: turn(60);
+            color: #020202;
+        }
     }
     &-list{
         @include content-wid();
