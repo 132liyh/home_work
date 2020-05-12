@@ -40,7 +40,7 @@
             <view class="list-img">
                 <image class="add-img bg" v-for="(item,key) in detailImg" @longpress="longPress('detail',key)" :key="key"
                        :src="item" mode="aspectFill"/>
-                <image v-if="detailImg.length<=1" class="add-img" @click="selImg('detail')" src="/static/images/add.png"/>
+                <image v-if="detailImg.length<=4" class="add-img" @click="selImg('detail')" src="/static/images/add.png"/>
             </view>
         </view>
         <view class="case-input">
@@ -78,7 +78,7 @@
                     };
                 }
                 return this.styleData[this.styleNum];
-            }
+            } 
         },
         onLoad(){
           StyleList().then(({data})=>{

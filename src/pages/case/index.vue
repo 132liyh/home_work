@@ -7,8 +7,8 @@
             </view>
         </view>
         <view class="case-list-content right">
-            <view class="list-content" v-for="(item,key) in rightInfo" :key="key" @click="caseClick(item)">
-                <image class="list-img" :src="item.imageUrl" mode="widthFix"/>
+            <view class="list-content" v-for="(item,key) in caseData" :key="key" @click="caseClick(item)">
+                <image class="list-img" :src="item.imagePath" mode="widthFix"/>
                 <text class="list-name">{{item.name}}</text>
             </view>
         </view>
@@ -70,6 +70,17 @@
             // console.log(this.leftInfo);
             // console.log(this.rightInfo);
             FindChartList(this.postData).then(({code, data}) => {
+                this.caseData = data;
+
+                const time = setTimeout(() => {
+                    this.statusTips = 'noMore';
+                    clearTimeout(time);
+                }, 500);
+            })
+        },
+        onShow(){
+             FindChartList(this.postData).then(({code, data}) => {
+                 console.log(code, data);
                 this.caseData = data;
 
                 const time = setTimeout(() => {
