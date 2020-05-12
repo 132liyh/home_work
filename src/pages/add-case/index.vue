@@ -97,7 +97,8 @@
                     this.logoImg = '';
                 }
                 else {
-                    this.detailImg.splice(key,1);
+                    this.detailImg.splice(key,1); 
+                    console.log(1111111);
                 }
             },
             save(){
