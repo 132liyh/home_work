@@ -37,7 +37,14 @@ export const UserTest=(postData)=>{
 }
 
 
-
+/**
+ * 添加案例
+ * @param postData
+ */
 export const AddCase=(postData)=>{
     return request('case/addCase',postData)
+}
+
+export const GetFile=(file)=>{
+    return request('file/getFile',file,"GET");
 }

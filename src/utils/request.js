@@ -89,29 +89,24 @@ export const wxPay = (data) => {
 
 /**
  * 请求上传图片接口
- * @param data 上传的图片
+ * @param {String} file 上传的图片
  * @returns {Promise<unknown>} 成功或失败
  */
 export const upload = (file) => {
       return new Promise((resolve, reject) => {
-            request('index/qiniu_token').then(({ data }) => {
-                  uni.uploadFile({
-                        url: QiNiuUrl,  //上传文件地址
-                        filePath: file,  //上传文件
-                        name: 'file',
-                        header: {
-                              'content-type': 'multipart/form-data'
-                        },
-                        formData: {
-                              token: data,
-                        },
-                        success: ({ data }) => {
-                              resolve(JSON.parse(data))
-                        },
-                        fail(err) {
-                              reject(err);
-                        }
-                  })
-            })
+          uni.uploadFile({
+              url: `${baseUrl}file/uploadFile`,  //上传文件地址
+              filePath: file,  //上传文件
+              name: 'file',
+              header: {
+                  'content-type': 'multipart/form-data'
+              },
+              success: ({ data }) => {
+                  resolve(JSON.parse(data))
+              },
+              fail(err) {
+                  reject(err);
+              }
+          })
       })
 };

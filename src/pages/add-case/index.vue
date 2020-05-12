@@ -44,7 +44,9 @@
 </template>
 
 <script>
-    import {AddCase} from "../../utils/api";
+    import {AddCase, GetFile} from "../../utils/api";
+    import {upload} from "../../utils/request";
+    import {api} from "../../utils/util";
 
     export default {
         data() {
@@ -69,7 +71,25 @@
                         else {
                             this.detailImg = [...this.detailImg,...tempFilePaths];
                         }
+
+                        this.imgUpload(tempFilePaths,0);
                     }
+                })
+            },
+            imgUpload(file,key){
+                api.showLoad(`上传第${key+1}张`);
+                upload(file[key]).then(({data})=>{
+                    console.log(data);
+                    GetFile(data).then((res)=>{
+                        console.log(res);
+                        if(file.length-1<key){
+                            this.imgUpload(file,key+1);
+                        }
+                        api.hideLoad();
+                    })
+                }).catch((err)=>{
+                    console.log(err)
+                    api.toast(`第${key+1}张失败`);
                 })
             },
             longPress(type,key) {
