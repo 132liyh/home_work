@@ -78,10 +78,10 @@
             },
             imgUpload(file,key){
                 api.showLoad(`上传第${key+1}张`);
+                // console.log(file, key)
                 upload(file[key]).then(({data})=>{
-                    console.log(data);
                     GetFile(data).then((res)=>{
-                        console.log(res);
+                        console.log(data);
                         if(file.length-1<key){
                             this.imgUpload(file,key+1);
                         }
