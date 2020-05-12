@@ -32,9 +32,17 @@
     export default {
         data() {
             return {
-                caseData: [],
-                statusTips: 'loading',
-            }
+                  caseData: [],
+                  statusTips: 'loading',
+                  postData:{
+                        "page": {
+                              "index": 0,
+                              "size": 0
+                        },
+                        "paging": true,
+                        "type": 0
+                  }
+            } 
         },
         computed: {
             leftInfo() {
@@ -61,16 +69,8 @@
         onLoad() {
             // console.log(this.leftInfo);
             // console.log(this.rightInfo);
-            const postData = {
-                "page": {
-                    "index": 0,
-                    "size": 0
-                },
-                "paging": true,
-                "type": 0
-            }
-            FindChartList(postData).then(({code, date}) => {
-                this.caseData = date;
+            FindChartList(this.postData).then(({code, data}) => {
+                this.caseData = data;
 
                 const time = setTimeout(() => {
                     this.statusTips = 'noMore';

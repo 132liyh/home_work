@@ -6,7 +6,7 @@ import { request } from './request';
  * @param {object} postData 
  */
 export const FindChartList=(postData)=>{
-      return request('chart/findChartList',postData);
+      return request('case/getCaseList',postData);
 }
 
 /**
@@ -45,6 +45,10 @@ export const AddCase=(postData)=>{
     return request('case/addCase',postData)
 }
 
-export const GetFile=(file)=>{
-    return request('file/getFile',file,"GET");
+
+/**
+ * 获取装修风格
+ */
+export const StyleList=()=>{
+    return request('style/queryStyle')
 }
