@@ -67,11 +67,8 @@
             }
         },
         onLoad() {
-            // console.log(this.leftInfo);
-            // console.log(this.rightInfo);
             FindChartList(this.postData).then(({code, data}) => {
                 this.caseData = data;
-
                 const time = setTimeout(() => {
                     this.statusTips = 'noMore';
                     clearTimeout(time);
@@ -80,7 +77,6 @@
         },
         onShow(){
              FindChartList(this.postData).then(({code, data}) => {
-                 console.log(code, data);
                 this.caseData = data;
 
                 const time = setTimeout(() => {

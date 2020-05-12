@@ -47,6 +47,38 @@ export const AddCase=(postData)=>{
 
 
 /**
+ * 详情
+ * @param {Object} postData
+ */
+export const GetCaseItem=(postData)=>{
+    return request('case/getCaseItem',postData);
+}
+
+/**
+ * 管理员登录
+ * @param postData
+ */
+export const AdminLoginData=(postData)=>{
+    return request('user/loginAdminUser',postData);
+}
+
+/**
+ * 添加收藏
+ * @param {Object} postData
+ */
+export const AddCollect=(postData)=>{
+    return request('case/collectCase',postData)
+}
+
+/**
+ * 取消收藏
+ * @param {Object} postData
+ */
+export const CancelCollect=(postData)=>{
+    return request('case/collectCase',postData)
+}
+
+/**
  * 获取装修风格
  */
 export const StyleList=()=>{

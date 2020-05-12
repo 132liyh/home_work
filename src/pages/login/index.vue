@@ -7,21 +7,56 @@
         <view class="login-btn">
             <button size="mini" @click="backView">暂不授权</button>
             <button size="mini" open-type="getUserInfo" @getuserinfo="getUserInfo" type="primary">立即授权</button>
+            <button class="admin" size="mini" @click="$refs.admin.open()" type="primary">管理员登录</button>
         </view>
+        <uni-popup ref="admin">
+            <view class="admin-login">
+                <text class="title">管理员登录</text>
+                <input class="input" v-model="adminUser" placeholder="请输入账号" type="text">
+                <input class="input" v-model="adminPwd" placeholder="请输入密码" type="password">
+                <view class="btn">
+                    <button size="mini" @click="$refs.admin.close()">取消</button>
+                    <button class="admin"size="mini" type="primary" @click="adminLogin">登录</button>
+                </view>
+            </view>
+        </uni-popup>
     </view>
 </template>
 
 <script>
     import {api} from '../../utils/util';
-    import {UserTest} from '../../utils/api';
+    import {AdminLoginData, UserTest} from '../../utils/api';
+    import {uniPopup} from '@dcloudio/uni-ui'
 
     export default {
+        components:{
+            uniPopup
+        },
         data() {
-            return {}
+            return {
+                adminUser:'',
+                adminPwd:''
+            }
         },
         methods: {
             backView() {
                 uni.navigateBack();
+            },
+            adminLogin(){
+                if(!this.adminUser){
+                    api.toast('请输入用户名');
+                    return false;
+                }
+                if(!this.adminPwd){
+                    api.toast('请输入密码');
+                    return false;
+                }
+                AdminLoginData({
+                    userName:this.adminUser,
+                    password:this.adminPwd
+                }).then(({code})=>{
+                
+                })
             },
             getUserInfo({detail}) {
                 if (!detail.userInfo) {
@@ -82,6 +117,39 @@
                 font-weight: normal;
                 font-size: $size-32;
                 padding: turn(5) turn(35) !important;
+                &.admin{
+                    background: $color-zhu;
+                }
+            }
+        }
+    }
+    .admin-login{
+        width: turn(500);
+        background: $color-fff;
+        border-radius: turn(10);
+        padding: turn(20);
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .title{
+            margin-bottom: turn(20);
+        }
+        .input{
+            margin-top: turn(30);
+            border: turn(1) solid $color-zhu;
+            border-radius: turn(16);
+            padding: turn(10) turn(20);
+            font-size: $size-32;
+        }
+        .btn{
+            width: 100%;
+            display: flex;
+            margin-top: turn(30);
+            justify-content: space-around;
+            button{
+                padding: turn(5) turn(35) !important;
+                font-weight: normal;
             }
         }
     }

@@ -1,17 +1,17 @@
 <template>
   <view class="collection-info">
-      <uni-icons class="collection-info-filled" @click="fabulous" type="heart-filled" :color="collectionData.filled==1?'#ffaa55':'#999'" size="20" />
-      <swiper class="swiper" indicator-dots v-if="collectionData.banner.length">
-          <swiper-item v-for="(item,key) in collectionData.banner" :key="key">
-              <image :src="item" />
+      <uni-icons class="collection-info-filled" @click="fabulous" type="heart-filled" :color="collectionData.isUserCase===1?'#ffaa55':'#999'" size="20" />
+      <swiper class="swiper" indicator-dots v-if="collectionData.imagePath.length">
+          <swiper-item v-for="(item,key) in collectionData.imagePath" :key="key">
+              <image :src="item" model="aspectFill" />
           </swiper-item>
         </swiper>
         <view class="collection-info-title">
-            <text>{{collectionData.title}}</text>
+            <text>{{collectionData.name || ''}}---{{collectionData.styleName || ''}}</text>
         </view>
         <view class="collection-info-tips">
-            <text class="tips-box" v-for="(item,key) in collectionData.content" :key="key">
-                  {{item}}
+            <text class="tips-box">
+                  {{collectionData.content || ''}}
             </text>
         </view>
   </view>
@@ -21,7 +21,7 @@
 import {api} from '../../utils/util';
 import collection from '../collection/collection.json';
 import { uniIcons } from '@dcloudio/uni-ui';
-import { FindChartItem } from '../../utils/api';
+import {AddCollect, CancelCollect, GetCaseItem} from '../../utils/api';
 export default {
       components: {
             uniIcons,
@@ -30,39 +30,57 @@ export default {
         return {
             collectionData: {
                 banner:[],
-                content:[],
-                title:'',
-                filled:1
+                content:'',
+                name:'',
+                styleName:'',
+                isUserCase:1,
             }
         }
     },
     onLoad(){
         const {id} = api.getData();
+        
+        GetCaseItem({
+            id,
+            userId:api.getInfo("token")
+        }).then(({code,data})=>{
+            if(code!==200){
+                api.tipsBack({
+                    content:'内容走丢了'
+                })
+                return false;
+            }
+            this.collectionData = data;
 
-        FindChartItem({id}).then(()=>{
-
+            uni.setNavigationBarTitle({
+                title: data.name || '经典案例'
+            });
         })
-        this.collectionData = collection.find((item)=>{
-            return item.id==id;
-        })
-        if(!this.collectionData.banner && !this.collectionData.content){
-            api.tipsBack({
-                content:'内容走丢了'
-            })
-        }
-        uni.setNavigationBarTitle({
-            title: this.collectionData.title || '经典案例'
-        });
         
     },
     methods:{
-          fabulous(){                
-                this.$set(this.collectionData,'filled',this.collectionData.filled==1?0:1);
-                uni.showNavigationBarLoading();
-                const time = setTimeout(() => {
-                      uni.hideNavigationBarLoading();
-                      clearTimeout(time);
-                }, 500);                
+          fabulous(){
+                if(!api.judgeLogin()){
+                    return false;
+                }
+                const {id} = api.getData();
+                const postData={
+                    caseId: id,
+                    userId: api.getInfo('token'),
+                }
+                
+                const CollectAjax =  (this.collectionData.isUserCase===1)?CancelCollect:AddCollect;
+
+                CollectAjax(postData).then(({code})=>{
+                    if(code===200){
+                        this.$set(this.collectionData,'isUserCase',this.collectionData.isUserCase===1?0:1);
+                        uni.showNavigationBarLoading();
+                        const time = setTimeout(() => {
+                            uni.hideNavigationBarLoading();
+                            clearTimeout(time);
+                        }, 500);
+                    }
+                })
           }
     }
 }

@@ -23,7 +23,7 @@ export const api = {
     judgeLogin() {
         let token = api.getInfo('token');
         if (!token) {
-            api.jump(viewName.getInfo);
+            api.jump(viewName.userLogin);
             return false;
         }
         return token;
