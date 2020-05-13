@@ -57,7 +57,7 @@ export default {
         if (code === 200) {
           uni.switchTab({
             url: viewName.user
-          });
+          }); 
           uni.setStorage({
             key: "admin",
             data: data,
