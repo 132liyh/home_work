@@ -22,9 +22,64 @@
 </template>
 
 <script>
+<<<<<<< HEAD
     import {api, viewName} from "../../utils/util";
     import {AdminLoginData, UserTest} from "../../utils/api";
     import {uniPopup} from "@dcloudio/uni-ui";
+=======
+import { api, viewName } from "../../utils/util";
+import { AdminLoginData, UserTest } from "../../utils/api";
+import { uniPopup } from "@dcloudio/uni-ui";
+
+export default {
+  components: {
+    uniPopup
+  },
+  data() {
+    return {
+      adminUser: "",
+      adminPwd: ""
+    };
+  },
+  methods: {
+    backView() {
+      uni.navigateBack();
+    },
+    adminLogin() {
+      if (!this.adminUser) {
+        api.toast("请输入用户名");
+        return false;
+      }
+      if (!this.adminPwd) {
+        api.toast("请输入密码");
+        return false;
+      }
+      AdminLoginData({
+        userName: this.adminUser,
+        password: this.adminPwd
+      }).then(({ code, data }) => {
+        console.log(code, data);
+        if (code === 200) {
+          uni.switchTab({
+            url: viewName.user
+          }); 
+          uni.setStorage({
+            key: "admin",
+            data: data,
+            success: function(res) {
+              console.log(res);
+            }
+          });
+        }
+      });
+    },
+    getUserInfo({ detail }) {
+      if (!detail.userInfo) {
+        api.toast("请同意授权");
+        return false;
+      }
+      api.showLoad();
+>>>>>>> a2ec818712443bc9e377456ad6b551a2c8a0cf6b
 
     export default {
         components: {
