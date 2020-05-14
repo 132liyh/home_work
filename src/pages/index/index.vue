@@ -133,7 +133,7 @@
             navDataCom(){
                 let navBackData = this.navData;
                 if(navBackData.length>=5){
-                    return navBackData;
+                    navBackData = navBackData.slice(0,4);
                 }
                 navBackData.push({
                     name:'更多'

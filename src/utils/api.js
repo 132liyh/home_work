@@ -84,3 +84,11 @@ export const CancelCollect=(postData)=>{
 export const StyleList=()=>{
     return request('style/queryStyle')
 }
+
+/**
+ * 添加装修风格
+ * @param {Object} postData
+ */
+export const AddStyle=(postData)=>{
+    return request('style/insertStyle',postData)
+}

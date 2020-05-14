@@ -26,7 +26,8 @@
 </template>
 <script>
 import {viewName, api} from '../../utils/util';
-
+// const wxFile = uni.getFileSystemManager();
+// require('../../utils/binding');
 export default {
     data(){
         return{
@@ -41,32 +42,42 @@ export default {
                     link:viewName.collection
                 },{
                     name:'我的关注',
-                    icon:'/static/images/teampng.png',
+                    icon:'/static/images/team.png',
                     link:viewName.team
                 },{
                     name:'联系客服',
                     icon:'/static/images/customer.png',
                 }
             ],
-            adminLLogin: viewName.userLogin,
         }
+    },
+    onLoad(){
     },
     methods:{
         listClick({link}){
             if(!link)
+            {
+                // try {
+                //     wxFile.accessSync(`${wx.env.USER_DATA_PATH}/work`);
+                //     wxFile.writeFileSync(`${wx.env.USER_DATA_PATH}/work/test.js`,`export default name = 123`,'utf-8');
+                //     const fileData = wxFile.readFileSync(`${wx.env.USER_DATA_PATH}/work/test.js`,'utf-8');
+                //     if(fileData){
+                //         console.log(fileData)
+                //         // console.log(wx.binding.eval(fileData,fileData,fileData))
+                //         // const fileInfo = require(`${wx.env.USER_DATA_PATH}/work/test.js`);
+                //         console.log(require(`/work/test.js`))
+                //     }
+                // }catch (e) {
+                //     console.log('???');
+                //     const mkdir = wxFile.mkdirSync(`${wx.env.USER_DATA_PATH}/work`);
+                //     console.log(mkdir)
+                // }
                 return false;
+            }
             api.jump(link);
         },
         handleAdministratorLogin(){
-            uni.navigateTo({
-                url: this.adminLLogin,
-                success: (res) => {
-                    console.log(res);
-                },
-                fail: (err) => {
-                    console.log(err);
-                }
-            })
+            api.judgeLogin();
         }
     }
 }

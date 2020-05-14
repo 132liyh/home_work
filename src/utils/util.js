@@ -22,7 +22,8 @@ export const api = {
      */
     judgeLogin() {
         let token = api.getInfo('token');
-        if (!token) {
+        let type = api.getInfo('type');
+        if (!token && !type) {
             api.jump(viewName.userLogin);
             return false;
         }
@@ -51,7 +52,7 @@ export const api = {
     /**
      * 设置存储值
      * @param {string} key 存储时的key
-     * @param {any} val 存储时的值
+     * @param {string} val 存储时的值
      *
      */
     setInfo(key, val) {
