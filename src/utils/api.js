@@ -14,7 +14,15 @@ export const FindChartList=(postData)=>{
  * @param {object} postData 
  */
 export const FindChartItem=(postData)=>{
-      return request('chart/findChartItem',postData);
+      return request('case/getCaseItem',postData);
+}
+
+/**
+ * 删除
+ * @param {object} postData
+ */
+export const DeleteCase=(postData)=>{
+    return request('case/deleteCase',postData);
 }
 
 
@@ -23,16 +31,6 @@ export const FindChartItem=(postData)=>{
  * @param {object} postData 
  */
 export const UserLogin=(postData)=>{
-      return request('user/loginUser',postData)
-}
-
-
-
-/**
- * 登录
- * @param {object} postData 
- */
-export const UserTest=(postData)=>{
       return request('user/loginUser',postData)
 }
 

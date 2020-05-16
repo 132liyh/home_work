@@ -1,69 +1,103 @@
 <template>
-  <view class="subscribe">
-      <view class="subscribe-title">
-          <text class="big">专业家装设计师</text>
-          <text class="small">对于家的设计 以人为本 满足您的需求</text>
+  <view class="calc">
+      <view class="calc-input">
+          <input type="text" placeholder="请输入地址" v-model="userAddress">
       </view>
-      <view class="subscribe-list">
-          <view class="list-box" v-for="(item,key) in list" :key="key" @click="hide(key)">
-              <image class="list-icon" :src="item.icon" mode="widthFix" />
-              <view class="list" :class="{hide:active==key}">
-                  <text v-for="(tips,index) in item.tips" :key="index">
-                      {{tips}}
-                  </text>
-              </view>
-          </view>
+      <view class="calc-input">
+          <input type="text" placeholder="请输入您房屋面积" v-model="userSize">
       </view>
-      <view class="subscribe-content">
-        <view class="subscribe-title">
-            <text class="big">在施工地</text>
-            <text class="small">55项专利工艺 欧洲8+N工艺体系 为您打造10年如新的家</text>
-        </view>
-        <view class="subscribe-content-tips">
-            <text>当前共有112个工地火热进行中</text>
-        </view>
-        <view class="subscribe-content-site">
-            <view class="site-box" v-for="(item,key) in siteDat" :key="key" >
-                <text class="title">{{item.title}}</text>
-                <view>
-                    <text class="num">{{item.num}}</text>套
-                </view>
-                <text class="address">{{item.address}}</text>
-            </view>
-        </view>
+      <view class="calc-input sel">
+          <picker class="left" :range="SelData.selRoom" range-key="value" @change="selData('room',$event)">
+              <text>{{showData('selRoom',room).value}}</text>
+          </picker>
+          <picker class="right" :range="SelData.selKitchen" range-key="value" @change="selData('kitchen',$event)">
+              <text>{{showData('selKitchen',kitchen).value}}</text>
+          </picker>
       </view>
-      <view class="subscribe-spet">
-          <view class="spet-box" v-for="(item,key) in spetList" :key="key" >
-              <text>{{item}}</text>
-              <text class="bg">{{key+1}}</text>
-          </view>
+      <view class="calc-input sel">
+          <picker class="left" :range="SelData.selSaloon" range-key="value" @change="selData('saloon',$event)">
+              <text>{{showData('selSaloon',saloon).value}}</text>
+          </picker>
+          <picker class="right" :range="SelData.selToilet" range-key="value" @change="selData('toilet',$event)">
+              <text>{{showData('selToilet',toilet).value}}</text>
+          </picker>
       </view>
+      <view class="calc-input">
+          <picker :range="navData" range-key="name" @change="selData('styleNUm',$event)">
+              <text>{{styleData.name}}</text>
+          </picker>
+      </view>
+      <view class="calc-input">
+          <picker :range="SelData.selGrade" range-key="value" @change="selData('grade',$event)">
+              <text>{{showData('selGrade',grade).value}}</text>
+          </picker>
+      </view>
+      <view class="calc-input">
+          <input type="tel" placeholder="请输入手机号" v-model="userMobile">
+      </view>
+      <view class="calc-input btn">
+          <button type="primary" plain @click="start">立即预约</button>
+      </view>
+      
   </view>
 </template>
 
 <script>
-import {List,siteDat,spetList} from './list';
-
+    import SelData from './type'
+    import {StyleList} from "../../utils/api";
 export default {
     data() {
         return {
-            list: List,
-            active:-1,
-            siteDat:siteDat,
-            spetList:spetList,
+            SelData,
+            room:0,   //房间
+            saloon:0,   //客厅
+            kitchen:0,   //厨房
+            toilet:0,    //厕所
+            grade:0,     //档次
 
-            myTime:null
+            navData:[],   //风格
+            styleNUm:-1,    //风格
+
+            userAddress:'',
+            userSize:'',
+            userMobile:''
         }
     },
+    computed:{
+      styleData(){
+          if(this.styleNUm){
+              return {
+                  name:"请选择装修风格"
+              }
+          }
+          return this.navData[this.styleNUm]
+      }
+    },
+    onLoad(){
+        StyleList().then(({data})=>{
+            this.navData = data;
+        })
+    },
     methods:{
-        hide(key){
-            this.active = key;
-            if(this.myTime){
-                clearTimeout(this.myTime);
+        showData(type,num){
+            return SelData[type][num] || {value:'请选择'}
+        },
+        selData(type,{detail}){
+            this[type] = detail.value;
+        },
+        start(){
+            if(this.userAddress){
+                api.toast('请输入地址');
+                return false;
             }
-            this.myTime = setTimeout(() => {
-                this.active = -1;
-            }, 2000);
+            if(this.userSize){
+                api.toast('请输入房屋面积');
+                return false;
+            }
+            if(this.userMobile){
+                api.toast('请输入手机号');
+                return false;
+            }
         }
     }
 }

@@ -39,6 +39,12 @@
         {
             "path": "pages/subscribe/index",
             "style": {
+                "navigationBarTitleText": "预约"
+            }
+        },
+        {
+            "path": "pages/subscribe-list/index",
+            "style": {
                 "navigationBarTitleText": "团队简介"
             }
         },
@@ -72,6 +78,12 @@
                 "text": "首页",
                 "iconPath": "/static/tabbar/index.png",
                 "selectedIconPath": "/static/tabbar/index-active.png"
+            },
+            {
+                "pagePath": "pages/subscribe/index",
+                "text": "预约",
+                "iconPath": "/static/tabbar/subscribe.png",
+                "selectedIconPath": "/static/tabbar/subscribe-active.png"
             },
             {
                 "pagePath": "pages/case/index",

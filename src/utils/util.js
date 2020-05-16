@@ -176,7 +176,6 @@ export const api = {
             }
         }
         let sharePath = `${viewName.index}?path=${encodeURIComponent(api.getRoute())}&query=${encodeURIComponent(info)}`;
-        console.log(sharePath)
         return sharePath;
 
     },
@@ -230,7 +229,6 @@ export const api = {
      *  @value content 必填
      */
     tipsBack(obj) {
-        console.log(obj.content)
         if (!obj.content) {
             console.error('content必须');
             return false;
@@ -276,9 +274,13 @@ export const viewName = {
      */
     userLogin: `/pages/login/index`,
     /**
-     * 团队简介
+     * 预约
      */
     subscribe: `/pages/subscribe/index`,
+    /**
+     * 团队简介
+     */
+    subscribeList: `/pages/subscribe-list/index`,
     /**
      * 收藏
      */

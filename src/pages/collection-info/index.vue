@@ -33,7 +33,7 @@ export default {
                 content:'',
                 name:'',
                 styleName:'',
-                isUserCase:1,
+                isUserCase:0,
             }
         }
     },
@@ -60,9 +60,11 @@ export default {
     },
     methods:{
           fabulous(){
+              console.log(1)
                 if(!api.judgeLogin()){
                     return false;
                 }
+                api.showLoad();
                 const {id} = api.getData();
                 const postData={
                     caseId: id,
@@ -72,6 +74,7 @@ export default {
                 const CollectAjax =  (this.collectionData.isUserCase===1)?CancelCollect:AddCollect;
 
                 CollectAjax(postData).then(({code})=>{
+                    api.hideLoad();
                     if(code===200){
                         this.$set(this.collectionData,'isUserCase',this.collectionData.isUserCase===1?0:1);
                         uni.showNavigationBarLoading();

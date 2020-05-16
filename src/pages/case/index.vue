@@ -1,17 +1,21 @@
 <template>
     <view class="case-list">
+        <view class="case-list-search">
+            <input type="text" placeholder="请输入需要搜索的案例名称" v-model="searchName" />
+            <button size="mini" type="warn" @click="searchData">搜索</button>
+        </view>
         <view class="case-list-content left">
-            <view class="list-content" v-for="(item,key) in leftInfo" :key="key" @click="caseClick(item)">
-                <image class="list-img" :src="item.imageUrl" mode="widthFix"/>
+            <view class="list-content" v-for="(item,key) in caseData" :key="key" @click="caseClick(item)" @longpress="longPress(item,key)">
+                <image class="list-img" :src="item.imagePath" mode="aspectFill"/>
                 <text class="list-name">{{item.name}}</text>
             </view>
         </view>
-        <view class="case-list-content right">
-            <view class="list-content" v-for="(item,key) in caseData" :key="key" @click="caseClick(item)">
+        <!--<view class="case-list-content right">
+            <view class="list-content" v-for="(item,key) in rightInfo" :key="key" @click="caseClick(item)">
                 <image class="list-img" :src="item.imagePath" mode="widthFix"/>
                 <text class="list-name">{{item.name}}</text>
             </view>
-        </view>
+        </view>-->
         <div class="loading">
             <uni-load-more :status="statusTips"/>
         </div>
@@ -34,7 +38,7 @@
 </template>
 
 <script>
-    import {FindChartList} from '../../utils/api'
+    import {DeleteCase, FindChartList} from '../../utils/api'
     import {api, viewName} from '../../utils/util';
     import {uniFab} from '@dcloudio/uni-ui';
 
@@ -44,6 +48,7 @@
         },
         data() {
             return {
+                searchName:'',
                 caseData: [],
                 statusTips: 'loading',
                 postData: {
@@ -64,26 +69,7 @@
             }
         },
         computed: {
-            leftInfo() {
-                if (!this.caseData) {
-                    return false;
-                }
-                return this.caseData.filter((item, key) => {
-                    if (key % 2 === 0) {
-                        return item;
-                    }
-                })
-            },
-            rightInfo() {
-                if (!this.caseData) {
-                    return false;
-                }
-                return this.caseData.filter((item, key) => {
-                    if (key % 2 !== 0) {
-                        return item;
-                    }
-                })
-            }
+        
         },
         onLoad() {
             FindChartList(this.postData).then(({code, data}) => {
@@ -116,6 +102,10 @@
             }
         },
         methods: {
+            searchData(){
+              if(!this.searchName)
+                  return false;
+            },
             caseClick({id}) {
                 api.jump(viewName.collectionInfo, {
                     id
@@ -124,6 +114,39 @@
             trigger({item}) {
                 api.jump(item.path);
                 this.$refs.fabInfo.close()
+            },
+            longPress({id},key){
+                if(!api.getInfo('type')){
+                    return false
+                }
+                uni.showActionSheet({
+                    itemList: ['查看详情','删除'],
+                    success:({tapIndex})=>{
+                        if(tapIndex===0){
+                            this.caseClick({id});
+                            return false;
+                        }
+                        if(tapIndex===1){
+                            uni.showModal({
+                                title:'温馨提示',
+                                content:'确认删除吗?',
+                                success:({confirm})=>{
+                                    if(confirm){
+                                        DeleteCase({
+                                            caseId:id
+                                        }).then(({code})=>{
+                                            if(code===200){
+                                                api.toast('删除成功');
+                                                this.caseData.splice(key,1);
+                                            }
+                                        })
+                                    }
+                                }
+                            })
+                        }
+                        
+                    }
+                });
             }
         }
     }
