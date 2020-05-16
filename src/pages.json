@@ -13,6 +13,12 @@
             }
         },
         {
+            "path": "pages/design/index",
+            "style": {
+                "navigationBarTitleText": "设计师"
+            }
+        },
+        {
             "path": "pages/case/index",
             "style": {
                 "navigationBarTitleText": "经典案例"
@@ -90,6 +96,12 @@
                 "text": "案例",
                 "iconPath": "/static/tabbar/case.png",
                 "selectedIconPath": "/static/tabbar/case-active.png"
+            },
+            {
+                "pagePath": "pages/design/index",
+                "text": "设计师",
+                "iconPath": "/static/tabbar/design.png",
+                "selectedIconPath": "/static/tabbar/design-active.png"
             },
             {
                 "pagePath": "pages/user/index",
