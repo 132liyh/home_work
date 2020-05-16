@@ -6,7 +6,7 @@
             </swiper-item>
         </swiper>
         <view class="index-nav">
-            <view class="index-nav-box" v-for="(item,key) in navDataCom" :key="key">
+            <view class="index-nav-box" v-for="(item,key) in navDataCom" :key="key" @click="getTeamMore(item)">
                 <image class="nav-img" v-if="item.imagePath" :src="item.imagePath"/>
                 <text class="nav-img" v-else>更多</text>
                 <text class="nav-name">{{item.name}}</text>
@@ -42,7 +42,7 @@
         <view class="index-team">
             <view class="index-team-title">
                 <text>团队展示</text>
-                <text class="more" @click="hanleTeamMore">更多</text>
+                <text class="more">更多</text>
             </view>
             <view class="index-team-content">
                 <scroll-view scroll-x enable-flex class="content-title">
@@ -156,19 +156,8 @@
             teamClick(key) {
                 this.activeNum = key;
             },
-
-            hanleTeamMore() {
-                console.log(viewName.teamMore);
-                uni.redirectTo({
-                    url: viewName.teamMore,
-                    success: (result) => {
-                        console.log(result);
-                    },
-                    fail: (error) => {
-                        console.log(error);
-                    },
-                });
-                  
+            getTeamMore(item) {
+                api.jump(viewName.teamMore)
             },
 
             designClick() {

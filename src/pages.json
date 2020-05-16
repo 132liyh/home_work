@@ -7,6 +7,12 @@
             }
         },
         {
+            "path": "pages/index/teamMore/teamMore",
+            "style": {
+                "navigationBarTitleText": "风格"
+            }
+        },
+        {
             "path": "pages/case/index",
             "style": {
                 "navigationBarTitleText": "经典案例"
