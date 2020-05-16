@@ -255,6 +255,10 @@ export const viewName = {
      * 首页
      */
     index: `/pages/index/index`,
+     /**
+     * 更多团队页面
+     */
+    teamMore: `/pages/index/teamMore/teamMore`,
     /**
      * 经典案例
      */

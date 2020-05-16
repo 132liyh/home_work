@@ -42,11 +42,11 @@
         <view class="index-team">
             <view class="index-team-title">
                 <text>团队展示</text>
-                <text class="more">更多</text>
+                <text class="more" @click="hanleTeamMore">更多</text>
             </view>
             <view class="index-team-content">
                 <scroll-view scroll-x enable-flex class="content-title">
-                    <button size="mini" v-for="(item,key) in teamArr" :key="key" :class="{active:key===activeNum}"
+                    <button size="mini" v-for="(item,key) in teamArr" :key="key" :class="{active:key === activeNum}"
                             @click="teamClick(key)">
                         {{item.name}}
                     </button>
@@ -105,13 +105,13 @@
                     id: 1
                 }, {
                     name: '施工团队',
-                    id: 1
+                    id: 2
                 }, {
                     name: '团队负责人',
-                    id: 1
+                    id: 3
                 }, {
                     name: '区域负责人',
-                    id: 1
+                    id: 4
                 }],
                 activeNum: 0,  //选择的
                 teamData: [
@@ -124,15 +124,13 @@
                         icon: icon
                     }
                 ],
-
-
                 myTime: null,
             }
         },
         computed:{
             navDataCom(){
                 let navBackData = this.navData;
-                if(navBackData.length>=5){
+                if(navBackData.length >= 5){
                     navBackData = navBackData.slice(0,4);
                 }
                 navBackData.push({
@@ -158,6 +156,21 @@
             teamClick(key) {
                 this.activeNum = key;
             },
+
+            hanleTeamMore() {
+                console.log(viewName.teamMore);
+                uni.redirectTo({
+                    url: viewName.teamMore,
+                    success: (result) => {
+                        console.log(result);
+                    },
+                    fail: (error) => {
+                        console.log(error);
+                    },
+                });
+                  
+            },
+
             designClick() {
 
             },
