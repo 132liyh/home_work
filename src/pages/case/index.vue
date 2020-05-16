@@ -82,14 +82,19 @@ export default {
   },
 
   onShow() {
-    this.showFab = api.getInfo("token") || api.getInfo("type");
-    let btnArr = [
-      {
+    // this.showFab = api.getInfo("token") || api.getInfo("type");
+    // let btnArr = [
+    //   {
+    //     iconPath: "/static/images/case.png",
+    //     text: "发布案例",
+    //     path: viewName.addCase
+    //   }
+    // ];
+    let btnArr = [{
         iconPath: "/static/images/case.png",
         text: "发布案例",
         path: viewName.addCase
-      }
-    ];
+      }];
     if (api.getInfo("type")) {
       btnArr.push({
         iconPath: "/static/images/style.png",
@@ -113,7 +118,6 @@ export default {
     },
     searchData() {
       this.postData.key = this.searchName;  
-      console.log(this.searchName);
       this.initialLoad();
       if (!this.searchName) return false;
     },

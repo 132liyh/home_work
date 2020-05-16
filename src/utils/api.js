@@ -34,7 +34,6 @@ export const UserLogin=(postData)=>{
       return request('user/loginUser',postData)
 }
 
-
 /**
  * 添加案例
  * @param postData
@@ -89,4 +88,12 @@ export const StyleList=()=>{
  */
 export const AddStyle=(postData)=>{
     return request('style/insertStyle',postData)
+}
+
+/**
+ * 设计师列表
+ * @param {Object} postData
+ */
+export const designerInfo=(postData)=>{
+    return request('designerInfo/selectDesigner',postData)
 }
