@@ -97,3 +97,11 @@ export const AddStyle=(postData)=>{
 export const designerInfo=(postData)=>{
     return request('designerInfo/selectDesigner',postData)
 }
+
+/**
+ * 设计师注册
+ * @param {Object} postData
+ */
+export const DesignerRegistration=(postData)=>{
+    return request('designerInfo/addDesigner',postData)
+}
