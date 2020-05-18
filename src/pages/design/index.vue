@@ -81,7 +81,7 @@ export default {
       avatarImg: "",
       logoImg: "",
       designerlImg: [],
-      sexIndex: 0,
+      sexIndex: 1,
       sex: '男',
     };
   },
@@ -102,7 +102,7 @@ export default {
     },
     change(e) {
       this.btnnum = e;
-      if(e === 1) {
+      if(e == 1) {
         this.designerlistRequest();
       }
     },
@@ -137,7 +137,7 @@ export default {
       this.workyear = e.target.value;
     },
     designerlistRequest() {
-      designerInfo(this.designerInfo).then(({ code, data }) => {
+      DesignerRegistration(this.designerInfo).then(({ code, data }) => {
         console.log(data);
         this.caseData = data;
         const time = setTimeout(() => {

@@ -95,7 +95,7 @@ export const AddStyle=(postData)=>{
  * @param {Object} postData
  */
 export const designerInfo=(postData)=>{
-    return request('designerInfo/selectDesigner',postData)
+    return request('designerInfo/addDesigner',postData)
 }
 
 /**
@@ -103,5 +103,5 @@ export const designerInfo=(postData)=>{
  * @param {Object} postData
  */
 export const DesignerRegistration=(postData)=>{
-    return request('designerInfo/addDesigner',postData)
+    return request('designerInfo/selectDesigner',postData)
 }
