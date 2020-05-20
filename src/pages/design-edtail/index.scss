@@ -1,0 +1,66 @@
+.design {
+    padding-bottom: turn(100);
+    &-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: turn(50);
+
+        .head-img {
+            width: turn(150);
+            height: turn(150);
+            border-radius: 50%;
+            background: $color-eee;
+        }
+
+        .user-box {
+            width: 80%;
+            margin: $size-24 auto;
+            display: flex;
+            justify-content: space-around;
+            color: $color-zhu;
+            font-size: $size-32;
+
+            .user-work,
+            .user-name {
+                width: turn(200);
+                text-align: center;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+    &-user{
+        background: $color-eee;
+        padding-top: turn(16);
+        .user-data{
+            background: $color-fff;
+            padding: $size-32;
+            font-size: $size-28;
+            display: flex;
+            flex-direction: column;
+            .user-title{
+                font-size: $size-32;
+                margin-bottom: $size-24;
+                font-weight: bold;
+            }
+            .swiper{
+                border: 1px solid $color-eee;
+                border-radius: turn(8);
+            }
+        }
+    }
+    &-follow{
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: turn(100);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: $color-zhu;
+        font-size: $size-32;
+        color: $color-fff;
+    }
+}

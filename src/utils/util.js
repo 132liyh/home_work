@@ -262,6 +262,14 @@ export const viewName = {
      */
     case: `/pages/case/index`,
     /**
+     * 设计
+     */
+    design: `/pages/design/index`,
+    /**
+     * 设计详情
+     */
+    designEdtail: `/pages/design-edtail/index`,
+    /**
      * 案例
      */
     addCase: `/pages/add-case/index`,

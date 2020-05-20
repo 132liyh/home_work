@@ -105,3 +105,37 @@ export const designerInfo=(postData)=>{
 export const DesignerRegistration=(postData)=>{
     return request('designerInfo/selectDesigner',postData)
 }
+
+
+/**
+ * 设计师详情
+ * @param postData
+ */
+export const DesignerDetails=(postData)=>{
+    return request('designerInfo/DesignerDetails',postData)
+}
+
+
+/**
+ * 设计师s删除
+ * @param {Object} postData
+ */
+export const DeleteDesigner=(postData)=>{
+    return request('designerInfo/deleteDesigner',postData)
+}
+
+/**
+ * 设计师关注
+ * @param {Object} postData
+ */
+export const AddUserFocus=(postData)=>{
+    return request('userFocus/addUserFocus',postData)
+}
+
+/**
+ * 设计师关注
+ * @param {Object} postData
+ */
+export const DeleteUserFocus=(postData)=>{
+    return request('userFocus/deleteUserFocus',postData)
+}

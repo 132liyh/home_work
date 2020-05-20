@@ -172,6 +172,11 @@
                         margin-bottom: turn(10);
                         background: $color-eee;
                     }
+                    .design-name{
+                        width: turn(100);
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
                 }
             }
         }

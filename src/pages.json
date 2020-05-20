@@ -19,6 +19,12 @@
             }
         },
         {
+            "path": "pages/design-edtail/index",
+            "style": {
+                "navigationBarTitleText": "设计师"
+            }
+        },
+        {
             "path": "pages/case/index",
             "style": {
                 "navigationBarTitleText": "经典案例"

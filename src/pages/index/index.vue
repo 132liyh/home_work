@@ -45,15 +45,15 @@
                 <text class="more">更多</text>
             </view>
             <view class="index-team-content">
-                <scroll-view scroll-x enable-flex class="content-title">
+                <!--<scroll-view scroll-x enable-flex class="content-title">
                     <button size="mini" v-for="(item,key) in teamArr" :key="key" :class="{active:key === activeNum}"
                             @click="teamClick(key)">
                         {{item.name}}
                     </button>
-                </scroll-view>
+                </scroll-view>-->
                 <scroll-view scroll-x enable-flex class="content-data">
-                    <view class="design-info" v-for="(item,key) in teamData" :key="key" @click="designClick(item)">
-                        <image class="design-head" :src="item.icon"/>
+                    <view class="design-info" v-for="(item,key) in designData" :key="key" @click="designClick(item)">
+                        <image class="design-head" :src="item.imagePath"/>
                         <text class="design-name">{{item.name}}</text>
                     </view>
                 </scroll-view>
@@ -78,7 +78,7 @@
 <script>
     import {uniSegmentedControl} from '@dcloudio/uni-ui'
     import {api, viewName} from '../../utils/util';
-    import {StyleList} from "../../utils/api";
+    import {DesignerRegistration, StyleList} from "../../utils/api";
 
     const icon = `http://img0.imgtn.bdimg.com/it/u=2841648446,236398816&fm=26&gp=0.jpg`;
 
@@ -100,30 +100,21 @@
                     'http://img4.imgtn.bdimg.com/it/u=1099941306,360276874&fm=26&gp=0.jpg'
                 ],
                 active: 0,   //
-                teamArr: [{
-                    name: '设计团队',
-                    id: 1
-                }, {
-                    name: '施工团队',
-                    id: 2
-                }, {
-                    name: '团队负责人',
-                    id: 3
-                }, {
-                    name: '区域负责人',
-                    id: 4
-                }],
+                // teamArr: [{
+                //     name: '设计团队',
+                //     id: 1
+                // }, {
+                //     name: '施工团队',
+                //     id: 2
+                // }, {
+                //     name: '团队负责人',
+                //     id: 3
+                // }, {
+                //     name: '区域负责人',
+                //     id: 4
+                // }],
                 activeNum: 0,  //选择的
-                teamData: [
-                    {
-                        name: '王某某',
-                        icon: icon
-                    },
-                    {
-                        name: '王某某',
-                        icon: icon
-                    }
-                ],
+                designData: [],
                 myTime: null,
             }
         },
@@ -147,7 +138,10 @@
         onLoad() {
             StyleList().then(({data})=>{
                 this.navData = data;
-            })
+            });
+            DesignerRegistration({groupId:1}).then(({code, data}) => {
+                this.designData = data;
+            });
         },
         onHide() {
             clearInterval(this.myTime);

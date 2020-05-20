@@ -14,10 +14,20 @@
         </view>
         <view class="case-input type">
             <view>
+                <text class="input-title">设计师</text>
+            </view>
+            <view class="style-type">
+                <picker mode="selector" :range="designData" range-key="name" @change="change($event,'designNum')">
+                    <text class="input-title">{{caseType.name}}</text>↓
+                </picker>
+            </view>
+        </view>
+        <view class="case-input type">
+            <view>
                 <text class="input-title">装修风格</text>
             </view>
             <view class="style-type">
-                <picker mode="selector" :range="styleData" range-key="name" @change="change">
+                <picker mode="selector" :range="styleData" range-key="name" @change="change($event,'styleNum')">
                     <text class="input-title">{{styleType.name}}</text>↓
                 </picker>
             </view>
@@ -62,7 +72,7 @@
 </template>
 
 <script>
-    import {AddCase, AddStyle, StyleList} from "../../utils/api";
+    import {AddCase, AddStyle, DesignerRegistration, StyleList} from "../../utils/api";
     import {baseUrl, upload} from "../../utils/request";
     import {api} from "../../utils/util";
     import {uniPopup} from "@dcloudio/uni-ui";
@@ -82,7 +92,11 @@
                 styleNum:-1,
                 
                 styleImg:'',
-                styleName:''
+                styleName:'',
+
+
+                designData:[],
+                designNum:-1
             }
         },
         computed:{
@@ -93,7 +107,15 @@
                     };
                 }
                 return this.styleData[this.styleNum];
-            } 
+            },
+            caseType(){
+                if(this.designNum===-1){
+                    return {
+                        name:'请选择'
+                    };
+                }
+                return this.designData[this.designNum];
+            }
         },
         onLoad(){
           const {addStyle} = api.getData();
@@ -103,6 +125,11 @@
           StyleList().then(({data})=>{
               this.styleData = data || [];
           })
+            api.showLoad();
+            DesignerRegistration({groupId: 1}).then(({code, data}) => {
+                this.designData = data;
+                api.hideLoad();
+            });
         },
         methods: {
             selImg(type) {
@@ -171,16 +198,20 @@
                     fitStage:"11",
                     createId:api.getInfo('token'),
                     imagePaths:this.detailImg,
-                    styleId:this.styleType.id
+                    styleId:this.styleType.id,
+                    designerId:this.caseType.id,
                 }).then(({code})=>{
                     if(code===200){
                         api.toast('发布成功');
                         uni.navigateBack();
                     }
+                    else {
+                        api.toast('发布失败');
+                    }
                 })
             },
-            change({detail}){
-                this.styleNum = parseInt(detail.value);
+            change({detail},type){
+                this[type] = parseInt(detail.value);
             }
         }
     }

@@ -57,13 +57,15 @@
                 AdminLoginData({
                     userName: this.adminUser,
                     password: this.adminPwd
-                }).then(({code, data}) => {
+                }).then(({code, data,msg}) => {
                     if (code === 200) {
                         api.toast("登录成功");
                         api.setInfo("type", "1");
                         api.setInfo("token", data.id);
                         uni.navigateBack();
+                        return false;
                     }
+                    api.toast(msg)
                 });
             },
             getUserInfo({detail}) {
