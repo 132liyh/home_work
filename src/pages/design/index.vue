@@ -170,7 +170,7 @@
                     id
                 })
             },
-            designLong({id}){
+            designLong({id},key){
                 if (!api.getInfo("type")) {
                     return false;
                 }

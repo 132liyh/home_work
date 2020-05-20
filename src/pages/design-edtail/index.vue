@@ -62,6 +62,9 @@
         },
         methods: {
             followFn() {
+                if(!api.judgeLogin()){
+                    return false;
+                }
                 api.showLoad();
                 const {id} = api.getData();
                 const userFocus = this.follow?AddUserFocus:DeleteUserFocus;

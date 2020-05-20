@@ -190,6 +190,7 @@
                     api.toast('请选择装修风格');
                     return false;
                 }
+                api.showLoad();
                 AddCase({
                     name:this.caseTitle,
                     caseImagePath:this.logoImg,
@@ -201,6 +202,7 @@
                     styleId:this.styleType.id,
                     designerId:this.caseType.id,
                 }).then(({code})=>{
+                    api.hideLoad();
                     if(code===200){
                         api.toast('发布成功');
                         uni.navigateBack();
